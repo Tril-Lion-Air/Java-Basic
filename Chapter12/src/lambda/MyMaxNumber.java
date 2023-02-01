@@ -1,5 +1,7 @@
 package lambda;
 
-public class MyMaxNumber {
-
+@FunctionalInterface
+public interface MyMaxNumber {
+	
+	int getMaxNumber(int x, int Y);
 }
