@@ -1,29 +1,36 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Stack;
+import java.util.*;
+import java.io.*;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		int n = Integer.parseInt(br.readLine());
-		Stack<Integer> stack = new Stack<>(); 
+		List<Integer> iList1 = new ArrayList<>();
+		for(int i=1;i<=5;i++) {
+			iList1.add(i);
 
-		while (n-- > 0) {
-			int temp = Integer.parseInt(br.readLine());
-			
-			if (temp == 0) stack.pop();
-			else stack.push(temp);
 		}
 		
-		int sum = 0;
-		for (int num: stack) {
-			sum += num;
-		}
+		int[] iArr = {1, 2, 3, 4, 5};
+//		List<Integer> iList2 = new ArrayList<>(Arrays.asList());
+//		list2.add(6);
+		List list = Arrays.asList(iArr);
+		System.out.println(list.get(0));
 		
-		System.out.println(sum);
+
+		
+		List<String> sList1 = new ArrayList<String>(Arrays.asList("1","2","3","4","5"));
+		List<String> sList2 = Arrays.asList("11","2222","33","44","55");
+		
+		List<Integer> sList3 = new ArrayList<>(Arrays.asList(1,2,3,4,5));
+
+		
+		System.out.println(iList1.toString());
+//		System.out.println(iLst2.toString());
+
+		System.out.println(sList1);
+		System.out.println(sList2);
+		System.out.println(sList3.get(0) + sList3.get(1));
+		
 	}
 }
