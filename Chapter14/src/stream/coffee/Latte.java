@@ -8,7 +8,7 @@ public class Latte extends Decorator {
 	
 	public void brewing() {
 		super.brewing();
-		System.out.print("Adding Milk");
+		System.out.print("Adding Milk ");
 	}
 	
 	
