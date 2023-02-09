@@ -9,6 +9,7 @@ public class Test {
 		int sum = Arrays.stream(intArr).sum();
 		System.out.println(sum);
 		
+		
 		int[][] intArr2D = {{1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
 //		int sum2 = Arrays.stream(iArr2D).sum(); // 2차원에서 IntStream.sum() 사용 불가
 		int sum2 = Arrays.stream(intArr2D)
@@ -21,12 +22,14 @@ public class Test {
 				.sum();
 		System.out.println(sum3);
 		
+		
 		Integer[] integerArr = {1,2,3,4};
 //		int sum4 = Arrays.stream(integerArr).sum(); // Integer[] 에서 IntStream.sum() 사용 불가 
 		int sum4 = Arrays.stream(integerArr).
 				mapToInt(i -> i) // mapToInt를 이용해서 int[]로 변환.
 				.sum();
 		System.out.println(sum4);
+		
 
 		Integer[][] integerArr2D = {{1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
 //		int sum5 = Arrays.stream(integerArr2D)
@@ -40,7 +43,7 @@ public class Test {
 //				.sum();
 		int sum5 = Arrays.stream(integerArr2D)
 				.flatMap(list -> Arrays.stream(list)) 
-				.reduce(0, Integer::sum); //sum 대신 reduce 이
+				.reduce(0, Integer::sum); //sum 대신 reduce 이용 
 		int sum6 = Arrays.asList(integerArr2D).stream() // List로 변환 
 				.flatMap(list -> Arrays.stream(list))
 				.reduce(0, Integer::sum); //sum 대신 reduce 이용 
