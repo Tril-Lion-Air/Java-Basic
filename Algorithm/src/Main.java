@@ -3,41 +3,35 @@ import java.io.*;
 
 public class Main {
 	
-	public static int bfs(int start, int end, int cnt) {
-		
-		int now = start;
-		boolean[] visited = new boolean[Math.max(start, end)*2];
-		
-		Queue<Integer> que = new LinkedList<>();
-		que.offer(now);
-		
-		while(!que.isEmpty()) {
-			now = que.poll();
-			int[] nexts = {now+1, now-1, now*2};
-			if (now == end) return cnt;
-			if (!visited[now]) {
-				visited[now] = true;
-				cnt++;
-				for (int next : nexts) {
-					if (!visited[next]) {
-						que.offer(next);
-					}
-				}
-			}
-		}
-		
-		return cnt;
-	}
-
-	public static void main(String[] args) throws IOException {
+	static int y, x; //세로: y, i 가로: x,j
+	static Integer[][] pan; // arr[y][x]
+	
+	public static void main(String[] args) throws Exception{
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine().trim());
 		
-		int n = Integer.parseInt(st.nextToken());
-		int k = Integer.parseInt(st.nextToken());
-		
-		System.out.println(bfs(n,k,0));
+		y = Integer.parseInt(st.nextToken());
+		x = Integer.parseInt(st.nextToken());
+		pan = new Integer[y][x];
 	
-	}
+		for(int i=0; i<y;i++) {
+			pan[i] = Arrays.stream(br.readLine().trim().split(" "))
+					.map(s -> Integer.parseInt(s))
+					.toArray(Integer[]::new);
+		}
+		
+//		System.out.println(Arrays.deepToString(pan));
+		// 입력 완료 
+		
+		int sumArr = Arrays.asList(pan).stream()
+				.flatMap(list -> Arrays.stream(list))
+				.reduce(0, Integer::sum);
+
+		while (sumArr > 0) {
+			
+		}
+		
+		
+    }
 }

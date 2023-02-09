@@ -1,40 +1,51 @@
-//
-//
-//public class Test {
-//	private static void bubbleSort(int[] arr) {
-//   		bubbleSort(arr, arr.length -1);
-//    }
-//    private static void bubbleSort(int[] arr, int lastIdx) {
-//    	boolean terminate = true;
-//    	if (lastIdx > 0) {
-//        	for(int i = 1; i <= lastIdx; i++) {
-//            	if (arr[i-1] > arr[i]) {
-//                	swap(arr, i -1, i);
-//                    terminate = false;
-//                }
-//            }
-//        	if (terminate == true) return;
-//            bubbleSort(arr,lastIdx - 1);
-//        }
-//    }
-//    
-//    private static void swap(int[] arr, int source, int target) {
-//    	int tmp = arr[source];
-//        arr[source] = arr[target];
-//        arr[target] = tmp;
-//    }
-//    
-//    private static void printArray(int[] arr) {
-//    	for (int data : arr) {
-//    		System.out.print(data + ", ");
-//    	}
-//    	System.out.println();
-//    }
-//    
-//    public static void main(String[] args) {
-//    	int[] arr = {3,6,1,8,2,4};
-//    	printArray(arr);
-//    	bubbleSort(arr);
-//    	printArray(arr);
-//    }
-//}
+import java.util.*;
+import java.io.*;
+
+public class Test {
+
+	public static void main(String[] args) throws Exception {
+		
+		int[] intArr = {1,2,3,4};
+		int sum = Arrays.stream(intArr).sum();
+		System.out.println(sum);
+		
+		int[][] intArr2D = {{1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
+//		int sum2 = Arrays.stream(iArr2D).sum(); // 2차원에서 IntStream.sum() 사용 불가
+		int sum2 = Arrays.stream(intArr2D)
+				.flatMapToInt(list -> Arrays.stream(list)) // flatMapToInt
+				.sum();
+		System.out.println(sum2);
+		
+		int sum3 = Arrays.asList(intArr2D).stream() // List로 변환 
+				.flatMapToInt(list -> Arrays.stream(list)) // flatMapToInt
+				.sum();
+		System.out.println(sum3);
+		
+		Integer[] integerArr = {1,2,3,4};
+//		int sum4 = Arrays.stream(integerArr).sum(); // Integer[] 에서 IntStream.sum() 사용 불가 
+		int sum4 = Arrays.stream(integerArr).
+				mapToInt(i -> i) // mapToInt를 이용해서 int[]로 변환.
+				.sum();
+		System.out.println(sum4);
+
+		Integer[][] integerArr2D = {{1,2,3,4}, {1,2,3,4}, {1,2,3,4}};
+//		int sum5 = Arrays.stream(integerArr2D)
+//				.flatMap(list -> Arrays.stream(list)) 
+//				.sum(); //IntStream.sum() 사용불가 
+//		int sum5 = Arrays.stream(integerArr2D)
+//				.flatMapToInt(list -> Arrays.stream(list)) // cannot convert from Stream<Integer> to IntStream
+//				.sum();
+//		int sum5 = Arrays.asList(integerArr2D).stream() // List로 변환 
+//				.flatMapToInt(list -> Arrays.stream(list)) // cannot convert from Stream<Integer> to IntStream
+//				.sum();
+		int sum5 = Arrays.stream(integerArr2D)
+				.flatMap(list -> Arrays.stream(list)) 
+				.reduce(0, Integer::sum); //sum 대신 reduce 이
+		int sum6 = Arrays.asList(integerArr2D).stream() // List로 변환 
+				.flatMap(list -> Arrays.stream(list))
+				.reduce(0, Integer::sum); //sum 대신 reduce 이용 
+		System.out.println(sum5);
+		System.out.println(sum6);
+
+	}
+}
